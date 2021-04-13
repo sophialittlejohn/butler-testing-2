@@ -1,0 +1,18 @@
+#!/usr/bin/env groovy
+
+multibranchPipelineJob('butler-test-test') {
+    displayName('butler-test-test cidi')
+    branchSources {
+        github {
+            id('butler-test-test') // IMPORTANT: use a constant and unique identifier
+            repoOwner('rasch-dtc')
+            repository('butler-test-test')            
+            scanCredentialsId('poleposition-jenkins-github-secret')
+        }
+    }
+    orphanedItemStrategy {
+        discardOldItems {
+            numToKeep(20)
+        }
+    }
+}
