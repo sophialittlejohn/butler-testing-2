@@ -1,0 +1,18 @@
+#!/usr/bin/env groovy
+
+multibranchPipelineJob('test-skip-s') {
+    displayName('test-skip-s cidi')
+    branchSources {
+        github {
+            id('test-skip-s') // IMPORTANT: use a constant and unique identifier
+            repoOwner('rasch-dtc')
+            repository('test-skip-s')            
+            scanCredentialsId('poleposition-jenkins-github-secret')
+        }
+    }
+    orphanedItemStrategy {
+        discardOldItems {
+            numToKeep(20)
+        }
+    }
+}
